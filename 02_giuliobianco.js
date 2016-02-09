@@ -5,3 +5,6 @@ function respond(socket){
 	d = newDate();
 	socket.end(d.toString());
 }
+port = process.argv[2];
+
+server.listen('port');
