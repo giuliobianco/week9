@@ -12,6 +12,7 @@ value = wpi.digitalRead(pin);
 function toggleBulb() {
     wpi.digitalWrite(pin, value);
     value = +!value;
+    
 }
 
 pageName = process.argv[1];
@@ -49,5 +50,35 @@ io.on('connection', function(socket) {
         toggleBulb();
         sendPinStatus();
         console.log(data);
+
     }
+      function blink(socket) {
+
+    after((2).seconds(), function() {
+      this.turnOn();
+    }.bind(this));
+
+    after((5).seconds(), function() {
+      this.turnOff();
+    }.bind(this));
+  }
+
+  function turnOn(socket) {
+    this.led.turnOn();
+    this.emit('turned_on');
+  }
+
+    function turnOff(socket) {
+    this.led.turnOff();
+    this.emit('turned_off');
+  }
+
+   function toggle(socket) {
+    this.led.toggle();
+    if (this.led.isOn()) {
+      this.emit('turned_on');
+    } else {
+      this.emit('turned_off');
+    }
+  }
 });

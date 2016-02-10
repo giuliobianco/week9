@@ -16,9 +16,7 @@
         console.log(data);
         $("#status").html(data.pinStatus);
     });
-
-    $('#clickme').on("click", doclick);
-
+    $('#clickme').on("click", doclick, blink);
     function doclick(event) {
         //console.log(event);
         payload = {};
