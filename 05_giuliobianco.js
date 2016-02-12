@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var wpi = require('wiring-pi');
 wpi.setup('gpio');
-var pin = (process.argv[3] ? Number(process.argv[3]) : 17);
+var pin = (process.argv[3] ? Number(process.argv[3]) : 17, 27);
 
 wpi.pinMode(pin, wpi.OUTPUT);
 value = wpi.digitalRead(pin);
